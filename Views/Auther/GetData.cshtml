@@ -1,0 +1,47 @@
+﻿@model MvcProject_Raihan.Models.Auther
+@{
+    /**/
+
+    Layout = null;
+}
+
+@using (Html.BeginForm("StoreOrEdit", "Auther", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @*@Html.HiddenFor(model => model.StudentID)*@
+    @Html.HiddenFor(model=> model.AutherID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AutherName, new { @class = "control-label" })
+        @Html.EditorFor(model => model.AutherName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.AutherName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AutherAddress, new { @class = "control-label" })
+        @Html.EditorFor(model => model.AutherAddress, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.AutherAddress)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ContactNo, new { @class = "control-label" })
+        @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.Age, new { @class = "control-label" })
+        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fees, new { @class = "control-label" })
+        <div class="input-group">
+            <span class="input-group-addon">
+                ₹
+            </span>
+            @Html.EditorFor(model => model.Fees, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>*@
+
+    <div class="form-group">
+
+        <input type="submit" value="Submit" class="btn btn-success" />
+        <input type="reset" value="Reset" class="btn btn-warning" />
+    </div>
+}  

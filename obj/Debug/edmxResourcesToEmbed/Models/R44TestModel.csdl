@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcProject_Raihan01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MvcProject_Raihan01Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Students" EntityType="MvcProject_Raihan01Model.Student" />
+    <EntitySet Name="Employees" EntityType="MvcProject_Raihan01Model.Employee" />
+    <EntitySet Name="BookDetails" EntityType="MvcProject_Raihan01Model.BookDetail" />
+    <EntitySet Name="Publishers" EntityType="MvcProject_Raihan01Model.Publisher" />
+    <AssociationSet Name="FK__BookDetai__Publi__71D1E811" Association="MvcProject_Raihan01Model.FK__BookDetai__Publi__71D1E811">
+      <End Role="Publisher" EntitySet="Publishers" />
+      <End Role="BookDetail" EntitySet="BookDetails" />
+    </AssociationSet>
+    <EntitySet Name="Customers" EntityType="MvcProject_Raihan01Model.Customer" />
+    <EntitySet Name="Authers" EntityType="MvcProject_Raihan01Model.Auther" />
+    <EntitySet Name="EmployeeInfromations" EntityType="MvcProject_Raihan01Model.EmployeeInfromation" />
+  </EntityContainer>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CellPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ContactAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BookDetail">
+    <Key>
+      <PropertyRef Name="BookDetailsID" />
+    </Key>
+    <Property Name="BookDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PublisherId" Type="Int32" />
+    <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BookPrice" Type="Int32" Nullable="false" />
+    <Property Name="ServiceCharge" Type="Int32" Nullable="false" />
+    <Property Name="DeleveryCharge" Type="Int32" Nullable="false" />
+    <Property Name="Total" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Publisher" Relationship="MvcProject_Raihan01Model.FK__BookDetai__Publi__71D1E811" FromRole="BookDetail" ToRole="Publisher" />
+  </EntityType>
+  <EntityType Name="Publisher">
+    <Key>
+      <PropertyRef Name="PublisherId" />
+    </Key>
+    <Property Name="PublisherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CellPhoneNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="BookDetails" Relationship="MvcProject_Raihan01Model.FK__BookDetai__Publi__71D1E811" FromRole="Publisher" ToRole="BookDetail" />
+  </EntityType>
+  <Association Name="FK__BookDetai__Publi__71D1E811">
+    <End Type="MvcProject_Raihan01Model.Publisher" Role="Publisher" Multiplicity="0..1" />
+    <End Type="MvcProject_Raihan01Model.BookDetail" Role="BookDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publisher">
+        <PropertyRef Name="PublisherId" />
+      </Principal>
+      <Dependent Role="BookDetail">
+        <PropertyRef Name="PublisherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Auther">
+    <Key>
+      <PropertyRef Name="AutherID" />
+    </Key>
+    <Property Name="AutherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AutherName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AutherAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeInfromation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="District" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

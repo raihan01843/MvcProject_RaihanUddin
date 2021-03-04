@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MvcProject_Raihan.Models.Customer>
+@{
+    ViewBag.Title = "Partial_View";
+}
+
+<h2>This page content by Customer main Page</h2>
+<img src="~/Images/banner.jpg" />
+
+@foreach (var item in Model)
+{
+    @Html.Partial("_Customer", item)
+}
